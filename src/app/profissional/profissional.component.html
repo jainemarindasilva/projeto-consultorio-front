@@ -3,8 +3,8 @@
     [p-actions]="actions">
 
   <po-table 
-    [p-columns]="columnsExport"
-    [p-items]="itemsExport">
+    [p-columns]="columns"
+    [p-items]="items">
   </po-table>
   
 </po-page-list>
@@ -21,14 +21,18 @@
                 p-label="Sócio(a)">
             </po-switch>
         </div>
-        <div class="po-row">
-        
-        </div>
+            <po-combo
+                class="po-lg-12"
+                name="especialidade"
+                p-icon="po-icon-exam"
+                p-label="Especialidade"
+                [p-options]="listaEspecialidades">
+            </po-combo>
         <div class="po-row">
             <po-input class="po-lg-12" formControlName="endereco" p-clean p-icon="po-icon-pin" p-label="Endereço"> </po-input>                    
         </div>
         <div class="po-row">
-            <po-number class="po-lg-4" formControlName="telefone" p-label="Telefone" p-clean> </po-number>
+            <po-number class="po-lg-4" formControlName="telefone" p-label="Telefone" p-clean p-icon="po-icon po-icon-social-whatsapp"> </po-number>
             <po-email class="po-lg-8" formControlName="email" p-label="Email" p-clean> </po-email>
         </div>
     </form>

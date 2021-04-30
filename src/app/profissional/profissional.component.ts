@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { PoModalAction, PoModalComponent, PoNotificationService, PoPageAction, PoTableColumn } from '@po-ui/ng-components';
+import { PoComboOption, PoModalAction, PoModalComponent, PoNotificationService, PoPageAction, PoTableColumn } from '@po-ui/ng-components';
 
 @Component({
   selector: 'app-profissional',
@@ -11,27 +11,29 @@ export class ProfissionalComponent implements OnInit {
 
     @ViewChild('incluirProfissionalModal', { static: true }) incluirProfissionalModal: PoModalComponent;
 
+    listaEspecialidades: Array<PoComboOption>;
+
     public readonly actions: Array<PoPageAction> = [
         { label: 'Incluir', action: this.incluirProfissional.bind(this) }
     ];
 
-    public readonly columnsExport: Array<PoTableColumn> = [
+    public readonly columns: Array<PoTableColumn> = [
         { property: 'nome', label: 'Nome', type: 'link' },
-        { property: 'servico', label: 'Serviço' },
+        { property: 'especialidade', label: 'Especialidade' },
         { property: 'telefone', label: 'Telefone' },
         { property: 'email', label: 'Email' },
     ];
 
-    public readonly itemsExport: Array<any> = [
+    public readonly items: Array<any> = [
         {
-            nome: 'Milena Rizzon', link: '/profissional-detail',
-            servico: 'Fonodiologia',
+            nome: 'Milena Rizzon', link: '/profissional-detalhe',
+            especialidade: 'Fonodiologia',
             telefone: '(54) 99999-6655',
             email: 'teste@gmail.com'
         },
         {
-            nome: 'Milena', link: '/profissional-detail',
-            servico: 'Fonodiologia',
+            nome: 'Vívian Lima', link: '/profissional-detalhe',
+            especialidade: 'Psicologia',
             telefone: '(54) 99999-6655',
             email: 'teste@gmail.com'
         }
@@ -39,7 +41,9 @@ export class ProfissionalComponent implements OnInit {
 
     constructor(private poNotification: PoNotificationService){}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.listaEspecialidades = this.getEspecialidade();
+    }
 
     close: PoModalAction = {
         action: () => {
@@ -48,12 +52,13 @@ export class ProfissionalComponent implements OnInit {
         label: 'Cancelar'
       };
     
-      confirm: PoModalAction = {
+    confirm: PoModalAction = {
         action: () => {
-          
+            this.poNotification.success('Profissional incluído com sucesso.');
+            this.closeModal();
         },
         label: 'Confirmar'
-      };
+    };
 
     incluirProfissional(): void {
         this.incluirProfissionalModal.open();
@@ -61,6 +66,15 @@ export class ProfissionalComponent implements OnInit {
 
     closeModal(): void {
         this.incluirProfissionalModal.close();
+    }
+
+    getEspecialidade() {
+        return [
+          { label: 'Fonoaudiologia', value: 'fonodiologia' },
+          { label: 'Psicologia ', value: 'psicologia ' },
+          { label: 'Pedagogia ', value: 'pedagogia ' },
+          { label: 'Terapia Ocupacional', value: 'tocupacional' }
+        ];
     }
 
 }

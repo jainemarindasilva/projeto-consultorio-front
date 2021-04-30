@@ -11,6 +11,7 @@ export class AppComponent {
     collapsedMenu: boolean = true;
 
     menus: Array<PoMenuItem> = [
+        { label: 'Atendimentos', icon: 'po-icon po-icon-history', shortLabel: 'Atendim.',link:'./atendimento'},
         { label: 'Finanças', icon: 'po-icon po-icon-finance', shortLabel: 'Finanças',  subItems: [
             { label: 'Receitas', link:'./receita'},
             { label: 'Despesas', link:'./despesa'}                           

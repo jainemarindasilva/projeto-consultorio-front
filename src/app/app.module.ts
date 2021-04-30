@@ -10,6 +10,7 @@ import { DespesaComponent } from './despesa/despesa.component';
 import { ReceitaComponent } from './receita/receita.component';
 import { PacienteComponent } from './paciente/paciente.component';
 import { ProfissionalComponent } from './profissional/profissional.component';
+import { AtendimentoComponent } from './atendimento/atendimento.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ProfissionalComponent } from './profissional/profissional.component';
     DespesaComponent,
     ReceitaComponent,
     PacienteComponent,
-    ProfissionalComponent    
+    ProfissionalComponent,
+    AtendimentoComponent    
   ],
   imports: [
     BrowserModule,

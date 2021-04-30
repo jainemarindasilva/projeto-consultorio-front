@@ -1,3 +1,34 @@
-<po-page-default p-title="Pacientes">
-        
-</po-page-default>
+<po-page-list 
+    p-title="Pacientes"
+    [p-actions]="actions">
+
+  <po-table 
+    [p-columns]="columns"
+    [p-items]="items">
+  </po-table>
+  
+</po-page-list>
+
+<po-modal #incluirPacienteModal p-title="Novo(a) Paciente" [p-primary-action]="confirm" [p-secondary-action]="close">
+    <form>
+        <div class="po-row">
+            <po-input class="po-md-9" formControlName="nome" p-clean p-icon="po-icon-user" p-label="Nome"> </po-input>
+            <po-datepicker
+                class="po-lg-3"
+                name="dtNascimento"
+                p-clean
+                p-label="Data de Nascimento">
+            </po-datepicker>
+        </div>
+        <div class="po-row">
+            <po-input class="po-lg-12" formControlName="endereco" p-clean p-icon="po-icon-pin" p-label="Endereço"> </po-input>                    
+        </div>
+        <div class="po-row">
+            <po-number class="po-lg-4" formControlName="telefone" p-label="Telefone" p-clean p-icon="po-icon po-icon-social-whatsapp"> </po-number>
+            <po-email class="po-lg-8" formControlName="email" p-label="Email" p-clean> </po-email>
+        </div>
+        <div class="po-row">
+            <po-textarea class="po-lg-12" name="observacoes" p-label="Observações"> </po-textarea>
+        </div>
+    </form>
+</po-modal>

@@ -1,3 +1,4 @@
+import { AtendimentoComponent } from './atendimento/atendimento.component';
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProfissionalComponent } from './profissional/profissional.component';
@@ -9,7 +10,8 @@ const routes: Routes = [
     {path: 'despesa', component: DespesaComponent},
     {path: 'receita', component: ReceitaComponent},
     {path: 'paciente', component: PacienteComponent},
-    {path: 'profissional', component: ProfissionalComponent}
+    {path: 'profissional', component: ProfissionalComponent},
+    {path: 'atendimento', component: AtendimentoComponent}    
 ];
 
 @NgModule({
