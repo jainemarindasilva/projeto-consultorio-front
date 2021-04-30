@@ -1,6 +1,7 @@
 <po-page-list 
     p-title="Pacientes"
-    [p-actions]="actions">
+    [p-actions]="actions"
+    [p-filter]="filterSettings">
 
   <po-table 
     [p-columns]="columns"
@@ -8,6 +9,20 @@
   </po-table>
   
 </po-page-list>
+
+<po-modal #advancedFilterModal p-title="Busca Avançada" [p-primary-action]="advancedFilterPrimaryAction">
+    <form>
+        <div class="po-row">
+            <po-input class="po-md-9" formControlName="nome" p-clean p-icon="po-icon-user" p-label="Nome"> </po-input>
+            <po-datepicker
+                class="po-lg-3"
+                name="dtNascimento"
+                p-clean
+                p-label="Data de Nascimento">
+            </po-datepicker>
+        </div>
+    </form>
+</po-modal>
 
 <po-modal #incluirPacienteModal p-title="Novo(a) Paciente" [p-primary-action]="confirm" [p-secondary-action]="close">
     <form>

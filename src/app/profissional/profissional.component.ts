@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { PoComboOption, PoModalAction, PoModalComponent, PoNotificationService, PoPageAction, PoTableColumn } from '@po-ui/ng-components';
+import { PoComboOption, PoModalAction, PoModalComponent, PoNotificationService, PoPageAction, PoPageFilter, PoTableColumn } from '@po-ui/ng-components';
 
 @Component({
   selector: 'app-profissional',
@@ -9,9 +9,22 @@ import { PoComboOption, PoModalAction, PoModalComponent, PoNotificationService, 
 })
 export class ProfissionalComponent implements OnInit {
 
+    @ViewChild('advancedFilterModal', { static: true }) advancedFilterModal: PoModalComponent;
     @ViewChild('incluirProfissionalModal', { static: true }) incluirProfissionalModal: PoModalComponent;
 
     listaEspecialidades: Array<PoComboOption>;
+
+    public readonly filterSettings: PoPageFilter = {
+        advancedAction: this.advancedFilterActionModal.bind(this),
+        placeholder: 'Pesquisar'
+    };
+
+    public readonly advancedFilterPrimaryAction: PoModalAction = {
+        action: () => {
+          this.advancedFilterModal.close();
+        },
+        label: 'Pesquisar'
+    };
 
     public readonly actions: Array<PoPageAction> = [
         { label: 'Incluir', action: this.incluirProfissional.bind(this) }
@@ -60,13 +73,13 @@ export class ProfissionalComponent implements OnInit {
         label: 'Confirmar'
     };
 
-    incluirProfissional(): void {
-        this.incluirProfissionalModal.open();
-    }
-
     closeModal(): void {
         this.incluirProfissionalModal.close();
     }
+
+    incluirProfissional(): void {
+        this.incluirProfissionalModal.open();
+    }   
 
     getEspecialidade() {
         return [
@@ -75,6 +88,10 @@ export class ProfissionalComponent implements OnInit {
           { label: 'Pedagogia ', value: 'pedagogia ' },
           { label: 'Terapia Ocupacional', value: 'tocupacional' }
         ];
+    }
+
+    advancedFilterActionModal(): void {
+        this.advancedFilterModal.open();
     }
 
 }

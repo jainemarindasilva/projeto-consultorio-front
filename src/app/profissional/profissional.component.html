@@ -1,13 +1,37 @@
 <po-page-list 
     p-title="Profissionais"
-    [p-actions]="actions">
+    [p-actions]="actions"
+    [p-filter]="filterSettings">
 
   <po-table 
     [p-columns]="columns"
     [p-items]="items">
-  </po-table>
-  
+  </po-table>  
 </po-page-list>
+
+<po-modal #advancedFilterModal p-title="Busca Avançada" [p-primary-action]="advancedFilterPrimaryAction">
+    <form>
+        <div class="po-row">
+            <po-input class="po-md-12" formControlName="nome" p-clean p-icon="po-icon-user" p-label="Nome"> </po-input>
+        </div>    
+        <div class="po-row">
+            <po-combo
+                class="po-lg-8"
+                name="especialidade"
+                p-icon="po-icon-exam"
+                p-label="Especialidade"
+                [p-options]="listaEspecialidades">
+            </po-combo>
+            <po-switch
+                class="po-md-4"
+                name="socio"
+                p-label-off="Não"
+                p-label-on="Sim"
+                p-label="Somente Sócios(as)">
+            </po-switch>
+        </div>
+    </form>
+</po-modal>
 
 <po-modal #incluirProfissionalModal p-title="Novo(a) Profissional" [p-primary-action]="confirm" [p-secondary-action]="close">
     <form>

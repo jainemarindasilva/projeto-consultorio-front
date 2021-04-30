@@ -1,5 +1,5 @@
-import { PoDisclaimer, PoPageAction, PoTableColumn } from '@po-ui/ng-components';
-import { Component, OnInit } from '@angular/core';
+import { PoDisclaimer, PoPageAction, PoTableColumn, PoModalComponent, PoPageFilter, PoModalAction } from '@po-ui/ng-components';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-atendimento',
@@ -8,8 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AtendimentoComponent implements OnInit {
 
+    @ViewChild('advancedFilterModal', { static: true }) advancedFilterModal: PoModalComponent;
+
     filters: Array<PoDisclaimer> = [];
     filteredItems: Array<any> = [];
+
+    public readonly filterSettings: PoPageFilter = {
+        advancedAction: this.advancedFilterActionModal.bind(this),
+        placeholder: 'Pesquisar'
+    };
+
+    public readonly advancedFilterPrimaryAction: PoModalAction = {
+        action: () => {
+          this.advancedFilterModal.close();
+        },
+        label: 'Pesquisar'
+    };
 
     public readonly actions: Array<PoPageAction> = [
         { label: 'Incluir', action: this.novoAtendimento.bind(this) }
@@ -40,6 +54,8 @@ export class AtendimentoComponent implements OnInit {
         
     }
 
-    
+    advancedFilterActionModal(): void {
+        this.advancedFilterModal.open();
+    }
 
 }

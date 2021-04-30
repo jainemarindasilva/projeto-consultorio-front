@@ -1,4 +1,4 @@
-import { PoModalComponent, PoPageAction, PoTableColumn, PoNotificationService, PoModalAction } from '@po-ui/ng-components';
+import { PoModalComponent, PoPageAction, PoTableColumn, PoNotificationService, PoModalAction, PoPageFilter } from '@po-ui/ng-components';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
@@ -8,7 +8,20 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 })
 export class PacienteComponent implements OnInit {
 
+    @ViewChild('advancedFilterModal', { static: true }) advancedFilterModal: PoModalComponent;
     @ViewChild('incluirPacienteModal', { static: true }) incluirPacienteModal: PoModalComponent;
+
+    public readonly filterSettings: PoPageFilter = {
+        advancedAction: this.advancedFilterActionModal.bind(this),
+        placeholder: 'Pesquisar'
+    };
+
+    public readonly advancedFilterPrimaryAction: PoModalAction = {
+        action: () => {
+          this.advancedFilterModal.close();
+        },
+        label: 'Pesquisar'
+    };
 
     public readonly actions: Array<PoPageAction> = [
         { label: 'Incluir', action: this.incluirPaciente.bind(this) }
@@ -62,6 +75,10 @@ export class PacienteComponent implements OnInit {
 
     closeModal(): void {
         this.incluirPacienteModal.close();
+    }
+
+    advancedFilterActionModal(): void {
+        this.advancedFilterModal.open();
     }
 
 }
